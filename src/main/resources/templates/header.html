@@ -1,0 +1,19 @@
+<html xmlns:th="http://wwww.thymeleaf.org"  lang="en">
+<div th:fragment="header" >
+   <div class="container"> <header class="d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a th:text='${Home}' href="/home" class="nav-link active" aria-current="page"></a></li>
+            <li class="nav-item"><a th:text='${Stations}' href="/stations/all?page=1" class="nav-link"></a></li>
+            <li th:if="${#request.getRemoteUser()==null}" class="nav-item"><a th:text='${Findatrain}' href="/trains/all?page=1" class="nav-link"></a></li>
+            <li class="nav-item">
+                <a th:if="${#request.getRemoteUser()}" href="/tickets/all?page=1" th:text='${Tickets}' class="nav-link"></a></li>
+        </ul>
+       <span class="fs-4" th:if="${#request.getRemoteUser()}" th:text="${user}" style="position: absolute;right: 15px"></span>
+       <p th:if="${#request.getRemoteUser()}"><small  th:text="${money} +' UAH'" style="margin-top:40px;position: absolute;right: 15px"></small></p>
+       <form th:if="${#request.getRemoteUser()}" th:action="@{/logout}" method="post">
+           <button  class="nav-link active"  th:text="${Signout}"  type="submit" />
+       </form>
+    </header>
+   </div>
+    <hr>
+</div>

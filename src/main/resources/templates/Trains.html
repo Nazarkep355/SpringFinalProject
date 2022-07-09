@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${Foundtrains}"></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+
+</head>
+<body>
+<div th:insert="header.html :: header"></div>
+<div style="min-height: 40%">
+    <small class="text-muted" th:if="${stationNotFound==true}" th:text="${Stationisntfound}"></small>
+    <form action="findWith" method="get" class="row gx-3 gy-2 align-items-center mx-auto">
+        <div class="col-sm-3">
+            <label class="visually-hidden" for="From">Name</label>
+            <input type="text" name="station1" class="form-control" required="required" id="From"
+                   th:attr="placeholder=${Departurestation}">
+        </div>
+        <div class="col-sm-3">
+            <label class="visually-hidden" for="To">Name</label>
+            <input type="text" name="station2" required="required" class="form-control" id="To"
+                   th:attr="placeholder=${Arrivalstation}" >
+        </div>
+        <input type="hidden" name="page" value="1">
+        <div class="col-sm-3">
+            <input type="date" class="form-control" name="date">
+        </div>
+         <div class="col-sm-3">
+        <button type="submit" class="btn btn-primary" th:text="${Findatrain}"></button>
+    </div>
+    </form>
+    <div th:if="${noTrains==true}"style="min-height: 70%">
+        <h2 style="text-align: center; position: center; " th:text="${Nodirecttrains}">
+        </h2></div>
+    <div th:if="${noTrains==null||noTrains==false}">
+        <table class="table table-striped table-hover " >
+    <thead>
+    <tr>
+        <th scope="col" th:text="${Route}"></th>
+       <div th:if='${station1!=null&&station2!=null}'>
+        <th scope="col" th:text="${station1}+' '+${Departuretime.toLowerCase()}"></th>
+        <th scope="col" th:text="${station2}+' '+${Arrivaltime.toLowerCase()}"></th>
+       </div>
+        <div th:if='${station1==null&&station2==null}'>
+            <th scope="col" th:text="${FirstStation}+' '+${Departuretime.toLowerCase()}"></th>
+            <th scope="col" th:text="${LastStation}+' '+${Arrivaltime.toLowerCase()}"></th>
+        </div>
+        <th scope="col" th:text="${Cost}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <nav  th:if="${pageable!=null&&station==null}" style="margin-left: 47%" aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" th:if="${currentPage>1}"><a class="page-link" th:href="'/trains/findWith?page='+${currentPage-1}+'&station1='+
+            ${station1}+'&station2='${station2}+'&date='+${date}" th:text="${currentPage-1}"></a></li>
+            <li class="page-item"><a class="page-link"  th:href="'/trains/findWith?page='
+            +${currentPage}+'&station1='+${station1}+'&station2='${station2}+'&date='+${date}" th:text="${currentPage}"></a></li>
+            <li class="page-item"><a class="page-link" th:href="'/trains/findWith?page='+${currentPage+1}
+            +'&station1='+${station1}+'&station2='${station2}+'&date='+${date}" th:text="${currentPage+1}">3</a></li>
+        </ul>
+    </nav>
+    <nav th:if="${station1==null&&station==null}" style="margin-left: 47%" aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" th:if="${currentPage>1}"><a class="page-link" th:href="'/trains/all?page='+${currentPage-1}" th:text="${currentPage-1}"></a></li>
+            <li class="page-item"><a class="page-link"  th:href="'/trains/all?page='+${currentPage}" th:text="${currentPage}"></a></li>
+            <li class="page-item"><a class="page-link" th:href="'/trains/all?page='+${currentPage+1}" th:text="${currentPage+1}">3</a></li>
+        </ul>
+    </nav>
+    <nav th:if="${station!=null}" style="margin-left: 47%" aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" th:if="${currentPage>1}"><a class="page-link" th:href="'/trains/byStation?page='+${currentPage-1}+'&station='+${station}" th:text="${currentPage-1}"></a></li>
+            <li class="page-item"><a class="page-link"  th:href="'/trains/byStation?page='+${currentPage}+'&station='+${station}" th:text="${currentPage}"></a></li>
+            <li class="page-item"><a class="page-link" th:href="'/trains/byStation?page='+${currentPage+1}+'&station='+${station}" th:text="${currentPage+1}">3</a></li>
+        </ul>
+    </nav>
+
+
+    <div th:each="train: ${trains}" th:if="${station1==null}">
+
+         <tr style="cursor: pointer"  th:onclick="'location.replace(\'redirToTrain?train='+${train.getId()}+'\')'">
+           <td scope="row"  th:text="${T(com.example.springproject.Utility.TrainUtility).fromTo(train)}"></td>
+           <td scope="row" th:text="${T(com.example.springproject.Utility.TrainUtility)
+           .dateToString(train.getAgenda().get(0))}"></td>
+           <td scope="row" th:text="${T(com.example.springproject.Utility.TrainUtility)
+           .dateToString(train.getAgenda().get(train.getAgenda().size()-1))}"></td>
+           <td scope="row" th:text="${train.getCost()}"></td>
+         </tr>
+    </div>
+    <div th:each="train: ${trains}" th:if="${station1!=null&&station2!=null}">
+        <tr style="cursor: pointer"  th:attr="onclick=|location.replace('redirToTrain?train=${train.getId()}&station1=${station1}&station2=${station2}')|" >
+            <td scope="row"  th:text=
+                    "${T(com.example.springproject.Utility.TrainUtility).fromTo(train)}"></td>
+            <td scope="row" th:text="${T(com.example.springproject.Utility.TrainUtility).dateToString(train.getAgenda()
+            .get(train.getStations.indexOf(station1)))}"></td>
+            <td scope="row" th:if='${noLastStation==null}'  th:text="${T(com.example.springproject.Utility.TrainUtility)
+            .dateToString(train.getAgenda()
+            .get(train.getStations.indexOf(station2)))}"></td>
+            <td scope="row" th:if="${noLastStation==true}"  th:text="${T(com.example.springproject.Utility.TrainUtility)
+           .dateToString(train.getAgenda().get(train.getAgenda().size()-1))}"></td>
+            <td scope="row" th:text="${train.getCost()}"></td>
+        </tr>
+    </div>
+    </tbody>
+        </table>
+  </div>
+
+<!--    </tbody>-->
+<!--</table>-->
+<!--</div>-->
+<div th:insert="footer.html :: footer"></div>
+</body>
+</html>

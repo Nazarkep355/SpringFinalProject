@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwww.thymeleaf.org"  lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${AccPage}"></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="header.html :: header"></header>
+<div style="min-height: 500px">
+    <small style="margin-left: 48%" th:if='${error!=null&&error.equals("NoTrainWithId")}' th:text='${NoTrainWithId}' class="text-muted"></small>
+    <small style="margin-left: 48%" th:if='${error!=null&&error.equals("NoRouteWithId")}' th:text='${NoRouteWithId}' class="text-muted"></small>
+    <ul class="nav nav-pills flex-column mb-auto" style="margin-left: 25px; ">
+    <li class="nav-item">
+        <a href="/trains/all?page=1" class="nav-link active" aria-current="page" style="width: 250px;" th:text="${Buyticket}">
+        </a>
+    </li>
+<!--    <li class="nav-item" style="margin-top: 15px">-->
+<!--        <a href="" class="nav-link active" aria-current="page" th:text="${Messages}" style="width: 250px;">-->
+<!--        </a>-->
+<!--    </li>-->
+    <li class="nav-item" style="margin-top: 15px" th:if="${isAdmin}">
+            <a href="/stations/addPage" class="nav-link active" aria-current="page" th:text="${Addstation}" style="width: 250px;">
+        </a>
+    </li>
+    <li class="nav-item" style="margin-top: 15px" th:if="${isAdmin}">
+        <a href="/routes/createPage" class="nav-link active" aria-current="page" th:text="${CreateRoute}" style="width: 250px;">
+        </a>
+    </li>
+    <li class="nav-item" style="margin-top: 15px" th:if="${isAdmin}">
+        <a href="/trains/planPage" class="nav-link active" aria-current="page" th:text="${Planatrain}" style="width: 250px;">
+        </a>
+    </li>
+    <li class="nav-item" style="margin-top: 15px" th:if="${isAdmin}">
+        <a href="/routes/all?page=1" class="nav-link active" aria-current="page" th:text="${Routes}" style="width: 250px;">
+        </a>
+    </li>
+</ul>
+</div>
+    <div th:insert="footer">
+    </div>
+</ul>
+</body>
+</html>
