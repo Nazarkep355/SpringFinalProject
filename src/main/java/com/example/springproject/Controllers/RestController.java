@@ -22,13 +22,23 @@ public class RestController {
     @Autowired
     TrainService trainService;
 
-    @GetMapping(value = "/userInfo")
+    @GetMapping(value = "/userInfo",produces = "application/json")
     public User getUserInfo(HttpServletRequest request){
         return userService.getUserByEmail(request.getRemoteUser());
     }
-    @ResponseBody()
-    @GetMapping(value = "/trainInfo/{id}")
+    @GetMapping(value = "/userInfoXml", produces = "application/xml")
+    public User getUserXml(HttpServletRequest request){
+        return userService.getUserByEmail(request.getRemoteUser());
+    }
+
+    @GetMapping(value = "/trainInfo/{id}", produces = "application/json")
     public Train getUserInfo(@PathVariable("id") Long id){
         return trainService.getTrainById(id);
     }
+
+    @GetMapping(value = "/trainInfoXml/{id}", produces = "application/xml")
+    public Train getUserInfoXml(@PathVariable("id") Long id){
+        return trainService.getTrainById(id);
+    }
+
 }

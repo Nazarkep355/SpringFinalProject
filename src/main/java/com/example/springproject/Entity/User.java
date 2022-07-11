@@ -4,26 +4,39 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "users")
+@XmlRootElement(name = "user")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class User {
+    @XmlElement
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @XmlElement
     @Column
     @NotBlank
     private String name;
+    @XmlElement
     @Column
     @Email
     private String email;
+    @XmlElement
     @Column
     @Pattern(regexp = "[A-Za-z\\d_.@!`]{6,20}")
     private String password;
+    @XmlElement
     @Column
     private int money;
+    @XmlElement
     @Column
     private boolean enabled;
+    @XmlElement
     @Column
     private String role;
 
