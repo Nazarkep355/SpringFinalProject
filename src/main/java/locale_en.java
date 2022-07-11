@@ -109,7 +109,10 @@ public class locale_en extends ListResourceBundle {
             {"NoTrainWithId","Train with entered id not found"},
             {"NoRouteWithId","Route with entered id not found"},
             {"GoToFirstPage","Go to first page"},
-            {"Hello", "Hello,"}
+            {"Hello", "Hello,"},
+            {"ChangeBalance","Change balance"},
+            {"EnterFunds","Enter funds to add"},
+            {"User","User"}
     };
 
 

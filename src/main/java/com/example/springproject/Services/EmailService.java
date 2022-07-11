@@ -51,14 +51,14 @@ import java.util.ResourceBundle;
 
      public void sendMessageAboutTicketBuying(Train train, User user, HttpServletRequest request){
         ResourceBundle bundle = utilityService.getLocaleBundle(request);
-            StringBuilder message= new StringBuilder();
-            message.append(bundle.getString("Hello"));
-            message.append(user.getName()).append(",");
-            message.append(bundle.getString("youJustBooked"));
-            message.append(TrainUtility.fromTo(train)).append(". ");
-            message.append(bundle.getString("HeIsComingOn"));
-            message.append(bundle.getString("YouWatchSchedule"));
-            sendSimpleMessage(user.getEmail(),bundle.getString("TicketBought"),message.toString());
+            StringBuilder messageBuilder= new StringBuilder();
+            messageBuilder.append(bundle.getString("Hello"));
+            messageBuilder.append(user.getName()).append(",");
+            messageBuilder.append(bundle.getString("youJustBooked"));
+            messageBuilder.append(TrainUtility.fromTo(train)).append(". ");
+            messageBuilder.append(bundle.getString("HeIsComingOn"));
+            messageBuilder.append(bundle.getString("YouWatchSchedule"));
+            sendSimpleMessage(user.getEmail(),bundle.getString("TicketBought"),messageBuilder.toString());
         }
 
 }

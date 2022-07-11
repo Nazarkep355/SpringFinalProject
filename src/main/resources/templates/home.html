@@ -16,6 +16,10 @@
         <a href="/trains/all?page=1" class="nav-link active" aria-current="page" style="width: 250px;" th:text="${Buyticket}">
         </a>
     </li>
+        <li class="nav-item" style="margin-top: 15px" >
+            <a href="/user/changeBalancePage" class="nav-link active" aria-current="page" th:text="${ChangeBalance}" style="width: 250px;">
+            </a>
+        </li>
 <!--    <li class="nav-item" style="margin-top: 15px">-->
 <!--        <a href="" class="nav-link active" aria-current="page" th:text="${Messages}" style="width: 250px;">-->
 <!--        </a>-->
@@ -24,6 +28,10 @@
             <a href="/stations/addPage" class="nav-link active" aria-current="page" th:text="${Addstation}" style="width: 250px;">
         </a>
     </li>
+        <li class="nav-item" style="margin-top: 15px" th:if="${isAdmin}">
+            <a href="/rest/userInfo" class="nav-link active" aria-current="page" th:text="'REST ' +${User}" style="width: 250px;">
+            </a>
+        </li>
     <li class="nav-item" style="margin-top: 15px" th:if="${isAdmin}">
         <a href="/routes/createPage" class="nav-link active" aria-current="page" th:text="${CreateRoute}" style="width: 250px;">
         </a>

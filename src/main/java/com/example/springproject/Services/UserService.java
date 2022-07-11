@@ -4,6 +4,7 @@ import com.example.springproject.Entity.User;
 import com.example.springproject.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -33,6 +34,11 @@ public class UserService {
         if (isUserWithEmailExists(email))
         return userRepository.findByEmail(email).get(0);
         else throw new IllegalArgumentException("NoUser");
+    }
+    @Transactional
+    public void changeBalance(User user, int money){
+        user.setMoney(user.getMoney()+money);
+        userRepository.save(user);
     }
 
 }

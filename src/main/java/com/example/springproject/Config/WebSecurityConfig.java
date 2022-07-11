@@ -20,7 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/home")
+                .antMatchers("/home","/user/**","tickets/**")
                 .hasAnyRole("USER","ADMIN")
                 .antMatchers("/routes/**","/trains/planPage",
                         "/trains/plan","/trains/cancel","/stations/addPage","/stations/add","/rest/**")

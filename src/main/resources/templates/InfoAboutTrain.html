@@ -13,9 +13,10 @@
 <div style="min-height: 500px">
     <div style="margin-left: 50px">
         <h3  th:text="${Cost}+': '+${train.getCost()} +'   '+${Booked}+': '
-        +${train.getBooked()}+'/'+${train.getSeats()}"></h3>
+        +${train.getBooked()}+'/'+${train.getSeats()}" ></h3>
     </div>
-<table class="table table-striped table-hover ms-5 " style="max-width: 500px">
+    <a th:if="${isAdmin}" th:text="'REST'" th:href="'/rest/trainInfo/'+${train.id}" class="nav-link"></a>
+<table class="table table-striped table-hover ms-5 " style="    max-width: 500px">
     <thead>
     <tr>
         <th scope="col" style="text-align: center" th:text="${Station}"></th>
