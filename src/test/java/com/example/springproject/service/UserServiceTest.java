@@ -1,8 +1,8 @@
 package com.example.springproject.service;
 
-import com.example.springproject.Entity.User;
-import com.example.springproject.Repository.UserRepository;
-import com.example.springproject.Services.UserService;
+import com.example.springproject.entity.User;
+import com.example.springproject.repository.UserRepository;
+import com.example.springproject.services.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,21 +13,25 @@ public class UserServiceTest {
     UserService userService;
     DBImitation dbImitation;
     UserRepository repository;
-    public UserServiceTest(){
+
+    public UserServiceTest() {
         dbImitation = new DBImitation();
-        for(long i=1;i<6;i++)
-        {User user = new User();
-        user.setId(i);
-        user.setEmail("user"+i+"@gmail.com");
-        dbImitation.add(user);}
+        for (long i = 1; i < 6; i++) {
+            User user = new User();
+            user.setId(i);
+            user.setEmail("user" + i + "@gmail.com");
+            dbImitation.add(user);
+        }
         repository = mock(UserRepository.class);
-        userService= new UserService(repository);
+        userService = new UserService(repository);
     }
+
     @Test
-    void isUserWithEmailExists_ShouldReturnBoolean(){
-        for(int i = 1;i<6;i++){
-        when(repository.findByEmail("user"+i+"@gmail.com"))
-                .thenReturn(dbImitation.getUsersByEmail("user"+i+"@gmail.com"));}
+    void isUserWithEmailExists_ShouldReturnBoolean() {
+        for (int i = 1; i < 6; i++) {
+            when(repository.findByEmail("user" + i + "@gmail.com"))
+                    .thenReturn(dbImitation.getUsersByEmail("user" + i + "@gmail.com"));
+        }
         Assertions.assertTrue(userService.isUserWithEmailExists("user1@gmail.com"));
         Assertions.assertTrue(userService.isUserWithEmailExists("user3@gmail.com"));
         Assertions.assertTrue(userService.isUserWithEmailExists("user5@gmail.com"));

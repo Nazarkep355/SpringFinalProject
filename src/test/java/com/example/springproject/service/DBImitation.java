@@ -1,6 +1,6 @@
 package com.example.springproject.service;
 
-import com.example.springproject.Entity.User;
+import com.example.springproject.entity.User;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 

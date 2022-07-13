@@ -1,7 +1,7 @@
 package com.example.springproject.util;
 
-import com.example.springproject.Entity.Train;
-import com.example.springproject.Utility.TrainUtility;
+import com.example.springproject.entity.Train;
+import com.example.springproject.utility.TrainUtility;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

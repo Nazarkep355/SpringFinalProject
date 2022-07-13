@@ -1,9 +1,9 @@
 package com.example.springproject.service;
 
-import com.example.springproject.Entity.Route;
-import com.example.springproject.Entity.Train;
-import com.example.springproject.Repository.RouteRepository;
-import com.example.springproject.Services.RouteService;
+import com.example.springproject.entity.Route;
+import com.example.springproject.entity.Train;
+import com.example.springproject.repository.RouteRepository;
+import com.example.springproject.services.RouteService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.PageRequest;

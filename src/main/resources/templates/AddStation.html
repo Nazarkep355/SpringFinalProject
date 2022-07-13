@@ -12,7 +12,7 @@
         <small class = "text-muted" style="margin-top: 15px; color: darkcyan;text-align: center" th:text="${AddStation}"></small>
         <div class="form-floating mb-3">
             <input type="text" name="name" class="form-control" id="floatingInput" placeholder="example"
-                   pattern="[А-Яа-яA-Za-z.0-9_\-]{2,50}">
+                   pattern="[А-Яа-яA-Za-z.0-9ІіїЇєЄ _\-]{2,50}">
             <label for="floatingInput" th:text="${Station}"></label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" style="width: 150px;" th:text="${Add}" type="submit"></button>

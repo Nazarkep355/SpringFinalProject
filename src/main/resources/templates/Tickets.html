@@ -37,12 +37,12 @@
             <tr th:onclick="'location.replace(\'/trains/redirToTrain?train='+${trainId.get(i)}+'\')'">
                 <td scope="row" th:text="${costs.get(i)}"></td>
                 <td scope="row" th:text="${fStation.get(i)}"></td>
-                <td scope="row" th:text="${T(com.example.springproject.Utility.TrainUtility)
+                <td scope="row" th:text="${T(com.example.springproject.utility.TrainUtility)
            .dateToString(fDate.get(i))}"></td>
                 <td scope="row" th:text="${lStation.get(i)}"></td>
-                <td scope="row" th:text="${T(com.example.springproject.Utility.TrainUtility)
+                <td scope="row" th:text="${T(com.example.springproject.utility.TrainUtility)
            .dateToString(lDate.get(i))}"></td>
-                <td scope="row" th:text="${T(com.example.springproject.Utility.TrainUtility)
+                <td scope="row" th:text="${T(com.example.springproject.utility.TrainUtility)
            .dateToString(ordered.get(i))}"></td>
             </tr>
         </div>

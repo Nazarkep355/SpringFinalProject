@@ -31,10 +31,10 @@
   <div th:each="route: ${routes}">
     <tr th:onclick="'location.replace(\'/routes/'+${route.id}+'\')'">
       <td scope="row" th:text="${route.getCost()}"></td>
-      <td scope="row" th:text="${T(com.example.springproject.Utility.RouteUtility).fromTo(route)}"></td>
+      <td scope="row" th:text="${T(com.example.springproject.utility.RouteUtility).fromTo(route)}"></td>
       <td scope="row" th:text="${route.stations.size()}"></td>
-      <td scope="row" th:text="${T(com.example.springproject.Utility.GeneralUtility).MinutesToStringTime(
-      T(com.example.springproject.Utility.RouteUtility).fullTimeInRoute(route))}"></td>
+      <td scope="row" th:text="${T(com.example.springproject.utility.GeneralUtility).MinutesToStringTime(
+      T(com.example.springproject.utility.RouteUtility).fullTimeInRoute(route))}"></td>
     </tr>
   </div>
   </tbody>

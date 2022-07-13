@@ -26,7 +26,7 @@
             <tr>
                 <td scope="row" style="text-align: center" th:text="${route.stations.get(i)}"></td>
                 <td th:if="${train!=null}" scope="row" style="text-align: center"
-                    th:text="${T(com.example.springproject.Utility.TrainUtility)
+                    th:text="${T(com.example.springproject.utility.TrainUtility)
                .dateToString(train.agenda.get(i))}"></td>
             </tr>
         </div>

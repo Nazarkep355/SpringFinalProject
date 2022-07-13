@@ -1,10 +1,9 @@
 package com.example.springproject.controllers;
 
-import com.example.springproject.Controllers.StationsController;
-import com.example.springproject.Entity.Station;
-import com.example.springproject.Repository.StationRepository;
-import com.example.springproject.Services.StationService;
-import com.example.springproject.Services.UtilityService;
+import com.example.springproject.entity.Station;
+import com.example.springproject.repository.StationRepository;
+import com.example.springproject.services.StationService;
+import com.example.springproject.services.UtilityService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;

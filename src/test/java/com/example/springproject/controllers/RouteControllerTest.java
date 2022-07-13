@@ -1,10 +1,9 @@
 package com.example.springproject.controllers;
 
-import com.example.springproject.Controllers.RouteController;
-import com.example.springproject.Entity.Route;
-import com.example.springproject.Repository.RouteRepository;
-import com.example.springproject.Services.RouteService;
-import com.example.springproject.Services.UtilityService;
+import com.example.springproject.entity.Route;
+import com.example.springproject.repository.RouteRepository;
+import com.example.springproject.services.RouteService;
+import com.example.springproject.services.UtilityService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -50,7 +49,7 @@ public class RouteControllerTest {
     }
 
     @Test
-    void createRoutePart2()throws Exception{
+    void createRoutePart2() throws Exception{
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         mockMvc.perform(MockMvcRequestBuilders.get("/routes/createP2")
                         .with(request ->

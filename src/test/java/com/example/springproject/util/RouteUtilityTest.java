@@ -1,7 +1,7 @@
 package com.example.springproject.util;
 
-import com.example.springproject.Entity.Route;
-import com.example.springproject.Utility.RouteUtility;
+import com.example.springproject.entity.Route;
+import com.example.springproject.utility.RouteUtility;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

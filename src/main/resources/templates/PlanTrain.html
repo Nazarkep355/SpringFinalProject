@@ -22,7 +22,7 @@
 
             <option th:each="route: ${routes}" th:value="${route.getId()}" th:text="${Id}
             +':'+${route.getId()}+'  '+${Cost} +':' +${route.getCost()}+'  '
-            +${T(com.example.springproject.Utility.RouteUtility).getStringOfRoute(route)} "></option>
+            +${T(com.example.springproject.utility.RouteUtility).getStringOfRoute(route)} "></option>
         </select>
         <div style="margin-top: 25px" class="form-floating mb-3">
             <input type="number" name="seats" class="form-control" id="seatsInput"

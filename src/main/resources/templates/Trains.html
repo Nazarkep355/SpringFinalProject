@@ -78,10 +78,10 @@
     <div th:each="train: ${trains}" th:if="${station1==null}">
 
          <tr style="cursor: pointer"  th:onclick="'location.replace(\'redirToTrain?train='+${train.getId()}+'\')'">
-           <td scope="row"  th:text="${T(com.example.springproject.Utility.TrainUtility).fromTo(train)}"></td>
-           <td scope="row" th:text="${T(com.example.springproject.Utility.TrainUtility)
+           <td scope="row"  th:text="${T(com.example.springproject.utility.TrainUtility).fromTo(train)}"></td>
+           <td scope="row" th:text="${T(com.example.springproject.utility.TrainUtility)
            .dateToString(train.getAgenda().get(0))}"></td>
-           <td scope="row" th:text="${T(com.example.springproject.Utility.TrainUtility)
+           <td scope="row" th:text="${T(com.example.springproject.utility.TrainUtility)
            .dateToString(train.getAgenda().get(train.getAgenda().size()-1))}"></td>
            <td scope="row" th:text="${train.getCost()}"></td>
          </tr>
@@ -89,13 +89,13 @@
     <div th:each="train: ${trains}" th:if="${station1!=null&&station2!=null}">
         <tr style="cursor: pointer"  th:attr="onclick=|location.replace('redirToTrain?train=${train.getId()}&station1=${station1}&station2=${station2}')|" >
             <td scope="row"  th:text=
-                    "${T(com.example.springproject.Utility.TrainUtility).fromTo(train)}"></td>
-            <td scope="row" th:text="${T(com.example.springproject.Utility.TrainUtility).dateToString(train.getAgenda()
+                    "${T(com.example.springproject.utility.TrainUtility).fromTo(train)}"></td>
+            <td scope="row" th:text="${T(com.example.springproject.utility.TrainUtility).dateToString(train.getAgenda()
             .get(train.getStations.indexOf(station1)))}"></td>
-            <td scope="row" th:if='${noLastStation==null}'  th:text="${T(com.example.springproject.Utility.TrainUtility)
+            <td scope="row" th:if='${noLastStation==null}'  th:text="${T(com.example.springproject.utility.TrainUtility)
             .dateToString(train.getAgenda()
             .get(train.getStations.indexOf(station2)))}"></td>
-            <td scope="row" th:if="${noLastStation==true}"  th:text="${T(com.example.springproject.Utility.TrainUtility)
+            <td scope="row" th:if="${noLastStation==true}"  th:text="${T(com.example.springproject.utility.TrainUtility)
            .dateToString(train.getAgenda().get(train.getAgenda().size()-1))}"></td>
             <td scope="row" th:text="${train.getCost()}"></td>
         </tr>

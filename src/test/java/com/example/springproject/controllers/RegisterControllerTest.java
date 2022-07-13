@@ -1,10 +1,9 @@
 package com.example.springproject.controllers;
 
-import com.example.springproject.Controllers.RegisterController;
-import com.example.springproject.Entity.User;
-import com.example.springproject.Repository.UserRepository;
-import com.example.springproject.Services.UserService;
-import com.example.springproject.Services.UtilityService;
+import com.example.springproject.entity.User;
+import com.example.springproject.repository.UserRepository;
+import com.example.springproject.services.UserService;
+import com.example.springproject.services.UtilityService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -73,6 +72,7 @@ public class RegisterControllerTest {
                         request.setParameter("name", "name");
                         request.setParameter("password", "12345678");
                         return request;}))
+//                    .andExpect(MockMvcResultMatchers.redirectedUrl("/"));
                     .andExpect(MockMvcResultMatchers.view().name("login.html"));
         }
 }

@@ -1,12 +1,12 @@
 package com.example.springproject.service;
 
-import com.example.springproject.Entity.Ticket;
-import com.example.springproject.Entity.Train;
-import com.example.springproject.Entity.User;
-import com.example.springproject.Repository.TicketRepository;
-import com.example.springproject.Repository.TrainRepository;
-import com.example.springproject.Repository.UserRepository;
-import com.example.springproject.Services.TicketService;
+import com.example.springproject.entity.Ticket;
+import com.example.springproject.entity.Train;
+import com.example.springproject.entity.User;
+import com.example.springproject.repository.TicketRepository;
+import com.example.springproject.repository.TrainRepository;
+import com.example.springproject.repository.UserRepository;
+import com.example.springproject.services.TicketService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,24 +20,25 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class TicketServiceTest {
-    static private Long ID =1l;
+    static private Long ID = 1l;
     TicketRepository ticketRepository;
     TrainRepository trainRepository;
     UserRepository userRepository;
     TicketService ticketService;
     List<Train> trainList;
     List<User> users;
-    public TicketServiceTest(){
+
+    public TicketServiceTest() {
         ticketRepository = mock(TicketRepository.class);
         trainRepository = mock(TrainRepository.class);
         userRepository = mock(UserRepository.class);
-        ticketService = new TicketService(userRepository,ticketRepository,trainRepository);
+        ticketService = new TicketService(userRepository, ticketRepository, trainRepository);
         users = new ArrayList<>();
-        trainList= new ArrayList<>();
-        for(int i =0;i<3;i++){
+        trainList = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
             User user = new User();
-            user.setId(Long.valueOf(i+1));
-            user.setMoney(100*i);
+            user.setId(Long.valueOf(i + 1));
+            user.setMoney(100 * i);
             user.setEmail("email@gmail.com");
             users.add(user);
 
@@ -51,26 +52,28 @@ public class TicketServiceTest {
         trainList.add(train);
 
     }
+
     @Test
-    void BuyTicketTest(){
-        for(long i=1;i<4;i++){
-            when(userRepository.getUserById(i)).thenReturn(Optional.of(users.get((int) (i-1))));
+    void BuyTicketTest() {
+        for (long i = 1; i < 4; i++) {
+            when(userRepository.getUserById(i)).thenReturn(Optional.of(users.get((int) (i - 1))));
         }
         when(trainRepository.findTrainById(ID)).thenReturn(trainList);
         Ticket ticket = new Ticket();
         ticket.setEnable(true);
         ticket.setCost(trainList.get(0).getCost());
         ticket.setTrain(trainList.get(0).getId());
-        Assertions.assertEquals(100,users.get(1).getMoney());
-        Assertions.assertThrows(IllegalArgumentException.class ,
-                ()->ticketService.BuyTicket(ticket,users.get(0)),"Noenoughfunds");
-        ticketService.BuyTicket(ticket,users.get(1));
-        Assertions.assertEquals(0,users.get(1).getMoney());
-        Assertions.assertThrows(IllegalArgumentException.class ,
-                ()->ticketService.BuyTicket(ticket,users.get(2)),"NoFreeSeats");
+        Assertions.assertEquals(100, users.get(1).getMoney());
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> ticketService.BuyTicket(ticket, users.get(0)), "Noenoughfunds");
+        ticketService.BuyTicket(ticket, users.get(1));
+        Assertions.assertEquals(0, users.get(1).getMoney());
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> ticketService.BuyTicket(ticket, users.get(2)), "NoFreeSeats");
     }
+
     @Test
-    void createTicketFromForm(){
+    void createTicketFromForm() {
         String station1 = "st1";
         String station2 = "st2";
         when(trainRepository.findTrainById(ID)).thenReturn(trainList);
@@ -80,6 +83,6 @@ public class TicketServiceTest {
         ticket.setFirstStation(station1);
         ticket.setLastStation(station2);
         ticket.setDate(Date.from(Instant.now()));
-        Assertions.assertEquals(ticket,ticketService.createTicketFromForm(ID,station1,station2));
+        Assertions.assertEquals(ticket, ticketService.createTicketFromForm(ID, station1, station2));
     }
 }

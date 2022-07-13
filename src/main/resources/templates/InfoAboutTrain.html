@@ -27,7 +27,7 @@
     <div th:each="i: ${#numbers.sequence(0,train.getStations().size()-1)}">
         <tr>
             <td scope="row" style="text-align: center" th:text="${stations.get(i)}"></td>
-                <td scope="row" style="text-align: center" th:text="${T(com.example.springproject.Utility.TrainUtility)
+                <td scope="row" style="text-align: center" th:text="${T(com.example.springproject.utility.TrainUtility)
                .dateToString(agenda.get(i))}"></td>
         </tr>
     </div>

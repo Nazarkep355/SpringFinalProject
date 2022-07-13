@@ -1,7 +1,6 @@
 package com.example.springproject.controllers;
 
-import com.example.springproject.Controllers.MainController;
-import com.example.springproject.Services.UtilityService;
+import com.example.springproject.services.UtilityService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
